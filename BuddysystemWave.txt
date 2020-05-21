@@ -1,0 +1,69 @@
+// Publisher //
+int Led = D7;
+
+void blinkLed()  // Blink led function // 
+{
+    
+    digitalWrite(Led, HIGH);   // 1st Blink // 
+    delay(400);
+    digitalWrite(Led, LOW);
+    delay(400);
+    
+    digitalWrite(Led, HIGH);   // 2nd blink // 
+    delay(400);
+    digitalWrite(Led, LOW);
+    delay(400);
+    
+    digitalWrite(Led, HIGH);  // 3rd blink // 
+    delay(400);
+    digitalWrite(Led, LOW);
+    delay(400);
+
+    
+}
+void setup()   // Pin setup //
+{
+    pinMode(Led,OUTPUT);
+
+}
+void loop() // loop to publish events 
+{
+     blinkLed();
+    
+    Particle.publish("Dhairya_vir","wave");
+    delay(10000);
+}
+
+// =====================================================================================================//
+
+// Subscriber ( Buddy code ) //
+int led = D7;
+
+void setup()   // Setup the pin and subscribing to buddy 
+{
+    pinMode(led,OUTPUT); .
+    Particle.subscribe("Dhairya_vir", "BlinkLedLight");
+}
+void loop() 
+{
+}
+
+void BlinkLedController(const char *event, const char *data) //blink Led Function
+{
+    
+   digitalWrite(led,HIGH);  // 1st blink // 
+    delay(1000);
+    digitalWrite(led,LOW);
+    delay(1000);
+   
+    digitalWrite(led,HIGH);  // 2nd blink // 
+    delay(1000);
+    digitalWrite(led,LOW);
+    delay(1000);
+    
+   digitalWrite(led,HIGH);  // 3rd blink // 
+    delay(1000);
+    digitalWrite(led,LOW);
+    delay(1000);
+    
+}
